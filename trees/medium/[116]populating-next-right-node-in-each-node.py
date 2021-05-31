@@ -16,13 +16,10 @@ class Solution(object):
         """
      
         queue = [root]
-        res = []
 
         while queue:
-
             nextLevel = []
             queue.append(None)
-                
             for i in range(len(queue)-1):
                 node = queue[i]
                 if node:
