@@ -63,18 +63,18 @@ class Solution(object):
 
 
 
-    # only work till 2 depth
-    def helper(self, root: 'Node') -> 'Node':
-        if root.left:            
-            root.left.next = root.right  
-            temp = depth
-            if root.right.left and root.left.right:            
-                root.left.right.next = root.right.left            
-            self.helper(root.left)        
-            self.helper(root.right)
+    # # only work till 2 depth
+    # def helper(self, root: 'Node') -> 'Node':
+    #     if root.left:            
+    #         root.left.next = root.right  
+    #         temp = depth
+    #         if root.right.left and root.left.right:            
+    #             root.left.right.next = root.right.left            
+    #         self.helper(root.left)        
+    #         self.helper(root.right)
 
-    def steven(self, root: 'Node') -> 'Node':
-        if not root:
-            return None
-        self.helper(root)
-        return root
+    # def steven(self, root: 'Node') -> 'Node':
+    #     if not root:
+    #         return None
+    #     self.helper(root)
+    #     return root
