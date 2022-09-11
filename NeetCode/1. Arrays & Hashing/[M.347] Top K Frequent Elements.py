@@ -46,3 +46,33 @@ class Solution:
                 if len(res) == k:
                     return res 
         
+        
+        
+# ========================    
+# my own solution 
+# [try 1]     
+class Solution(object):
+    def topKFrequent(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: List[int]
+        """
+        freq = [[] for i in range(len(nums)+1)]
+        # {0: [], 1: [], 2: [], 3: [], 4: [], 5: [], 6: []}
+        
+        count = {}
+        for n in nums:
+            count[n] = 1 + count.get(n, 0)
+        
+        for key,val in count.items():
+            freq[val].append(key)
+            
+        res = []
+        # print(freq)
+        for i in range(len(freq)-1,0,-1):
+            for n in freq[i]:
+                res.append(n)
+                if len(res) == k:
+                    return res 
+                

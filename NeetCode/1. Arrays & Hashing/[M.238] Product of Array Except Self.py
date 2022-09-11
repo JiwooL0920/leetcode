@@ -37,3 +37,56 @@ class Solution:
             res[i] *= postfix
             postfix *= nums[i]
         return res  
+    
+    
+    
+        
+# ========================    
+# my own solution 
+# [try 1]     
+# works, but time limit exceeded 
+class Solution(object):
+    def productExceptSelf(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[int]
+        """
+        mult = []
+        
+        for i in range(len(nums)):
+            numsExceptSelf = []
+            numsExceptSelf.extend(nums[:i])
+            numsExceptSelf.extend(nums[i+1:])
+            mult.append(numsExceptSelf)
+            
+        print(mult)
+        
+        for i in range(len(mult)):
+            prod = 1
+            for v in mult[i]:
+                prod *= v
+            mult[i] = prod 
+        
+        return mult
+    
+# so stick with neetcode solution..
+class Solution(object):
+    def productExceptSelf(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[int]
+        """
+        res = [1] * len(nums)
+        
+        prefix = 1 
+        for i in range(len(nums)):
+            res[i] *= prefix 
+            prefix *= nums[i]
+        
+        postfix = 1 
+        for i in range(len(nums)-1,-1,-1):
+            res[i] *= postfix 
+            postfix *= nums[i]
+            
+        return res
+                

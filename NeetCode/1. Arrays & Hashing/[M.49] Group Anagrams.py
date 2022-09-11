@@ -34,3 +34,35 @@ class Solution:
 
 n = Solution() 
 n.groupAnagrams(["eat","tea","tan","ate","nat","bat"])
+
+
+
+
+# ========================    
+# my own solution 
+# [try 1]
+class Solution(object):
+    def groupAnagrams(self, strs):
+        """
+        :type strs: List[str]
+        :rtype: List[List[str]]
+        """
+        # [e:1, a:1, t:1] : ["eat","tea","ate"] --> doesn't work. dict/list cannot be a dict key 
+        
+        # use ord.
+        # a = 80 -> 0 (80-80)
+        # b = 81 -> 1 (81-80)
+        
+        res = {}
+        
+        for s in strs:
+            chars = [0]*26
+            for c in s:
+                chars[ord(c) - ord('a')] += 1
+            a = res.get(tuple(chars),[])
+            a.append(s)
+            res[tuple(chars)] = a
+        
+        return res.values()
+                
+                

@@ -30,3 +30,4 @@ class Solution:
                 cur = cur.left 
             else:
                 return cur 
+            

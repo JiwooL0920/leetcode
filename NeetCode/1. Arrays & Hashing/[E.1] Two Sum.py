@@ -24,3 +24,24 @@ class Solution:
                 return [prevMap[diff], i]
             prevMap[n] = i 
         return # but we're guaranteed there's a solution 
+    
+
+# ========================    
+# my own solution 
+# [try 1]
+class Solution(object):
+    def twoSum(self, nums, target):
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: List[int]
+        """
+        indexMap = {}
+        for i, n in enumerate(nums):
+            diff = target - n
+            if diff in indexMap:
+                return [indexMap[diff], i]
+            indexMap[n] = i 
+            
+            
+        

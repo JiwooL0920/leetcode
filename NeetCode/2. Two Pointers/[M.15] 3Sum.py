@@ -46,3 +46,36 @@ class Solution:
                     while nums[l] == nums[l - 1] and l < r: #skip duplicate
                         l += 1
         return res
+    
+    
+    
+    
+# my own solution
+# try 1
+class Solution:
+    def threeSum(self, nums):
+        res = []
+        nums.sort()
+        
+        for i, n in enumerate(nums):
+            # skip first number duplicates
+            if i > 0 and n == nums[i-1]:
+                continue
+            # first number n, with remaining list run Two Sum II 
+            start, end = i + 1, len(nums) - 1
+            while start < end:
+                threeSum = n + nums[start] + nums[end]
+                if threeSum < 0:
+                    start += 1 
+                elif threeSum > 0:
+                    end -= 1
+                else:
+                    # found threeSum 
+                    res.append([n, nums[start], nums[end]])
+                    # move start pointer to right, avoiding duplicates
+                    start += 1 
+                    while start < end and nums[start] == nums[start-1]:
+                        start += 1
+        
+        return res
+                        
