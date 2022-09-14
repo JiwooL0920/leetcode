@@ -37,3 +37,20 @@ class Solution:
         self.invertTree(root.left)
         self.invertTree(root.right)
         return root 
+    
+    
+    
+# my own solution
+# try 1    
+class Solution(object):
+    def invertTree(self, root):
+        """
+        :type root: TreeNode
+        :rtype: TreeNode
+        """
+        if root:
+            root.left, root.right = root.right, root.left
+            self.invertTree(root.left)
+            self.invertTree(root.right)
+        return root
+        
