@@ -42,19 +42,28 @@ class ListNode(object):
     def __init__(self, x):
         self.val = x
         self.next = None
-
-class Solution: 
+        
+        
+class Solution(object):
     def removeNthFromEnd(self, head, n):
+        """
+        :type head: ListNode
+        :type n: int
+        :rtype: ListNode
+        """
         dummy = ListNode(0, head)
-        left = dummy 
-        right = head 
-        while n > 0 and right: #n = 0 means we shifted right pointer n times
-            right = right.next 
-            n -= 1 
-        while right: 
+        left = dummy
+        right = head
+        
+        while n > 0:
+            right = right.next
+            n -= 1
+        
+        while right:
             left = left.next 
             right = right.next 
-        # delete
-        left.next = left.next.next 
-        return dummy.next 
+            
+        left.next = left.next.next
+        
+        return dummy.next
         
