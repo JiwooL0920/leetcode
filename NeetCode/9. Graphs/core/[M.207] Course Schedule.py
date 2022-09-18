@@ -47,19 +47,20 @@ class Solution:
         # visitSet = all courses along the curr DFS path 
         visitSet = set() 
         def dfs(crs):
-            # detected a loop
+            # detected a loop, course cannot be completed
             if crs in visitSet:
                 return False
             # course has no prereq
             if preMap[crs] == []:
                 return True 
             visitSet.add(crs)
+            # check if all prerequesites can be taken 
             for pre in preMap[crs]:
                 if not dfs(pre): 
                     return False 
                 # it's a course that can be taken. remove from visit set 
                 visitSet.remove(crs)
-                preMap[crs] = [] #
+                preMap[crs] = [] #we know that crs can be taken. so compress premap to empty list 
                 return True 
         
         for crs in range(numCourses):
