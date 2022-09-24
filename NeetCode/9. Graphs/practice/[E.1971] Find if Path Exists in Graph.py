@@ -105,3 +105,100 @@ class Solution(object):
                         
         return False
         
+        
+        
+        
+        
+        
+# try 2
+
+# dfs recursive
+class Solution(object):
+    def validPath(self, n, edges, source, destination):
+        """
+        :type n: int
+        :type edges: List[List[int]]
+        :type source: int
+        :type destination: int
+        :rtype: bool
+        """        
+        adj = defaultdict(list)
+        for n1, n2 in edges:
+            adj[n1].append(n2)
+            adj[n2].append(n1)
+        
+        visit = set()
+
+        def dfs(n):
+            if n == destination:
+                return True 
+            visit.add(n)
+            for nei in adj[n]:
+                if nei not in visit:
+                    if dfs(nei):
+                        return True
+            
+        return dfs(source)
+        
+
+# dfs iterative
+class Solution(object):
+    def validPath(self, n, edges, source, destination):
+        """
+        :type n: int
+        :type edges: List[List[int]]
+        :type source: int
+        :type destination: int
+        :rtype: bool
+        """
+        if not edges: return True 
+        
+        adj = defaultdict(list)
+        for n1, n2 in edges:
+            adj[n1].append(n2)
+            adj[n2].append(n1)
+        
+        visit = set()
+        visit.add(source)
+        stack = [source]
+        
+        while stack:
+            n = stack.pop()
+            if n == destination:
+                return True 
+            for nei in adj[n]:
+                if nei not in visit:
+                    visit.add(nei)
+                    stack.append(nei)
+        return False
+        
+        
+# bfs 
+class Solution(object):
+    def validPath(self, n, edges, source, destination):
+        """
+        :type n: int
+        :type edges: List[List[int]]
+        :type source: int
+        :type destination: int
+        :rtype: bool
+        """        
+        adj = defaultdict(list)
+        for n1, n2 in edges:
+            adj[n1].append(n2)
+            adj[n2].append(n1)
+        
+        visit = set()
+        visit.add(source)
+        q = deque([source])
+        
+        while q:
+            n = q.popleft()
+            if n == destination:
+                return True 
+            for nei in adj[n]:
+                if nei not in visit:
+                    visit.add(nei)
+                    q.append(nei)
+        
+        return False

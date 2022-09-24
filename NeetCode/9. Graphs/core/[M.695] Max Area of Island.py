@@ -65,3 +65,51 @@ class Solution:
                     maxArea = max(maxArea, bfs(r,c))
                 
         return maxArea
+    
+    
+    
+    
+    
+    
+    
+# my own solution
+# try 1
+class Solution(object):
+    def maxAreaOfIsland(self, grid):
+        """
+        :type grid: List[List[int]]
+        :rtype: int
+        """
+        ROWS, COLS = len(grid), len(grid[0])
+        maxArea = 0
+        
+        visit = set() 
+        
+        # expand island and find maxArea
+        def bfs(row, col):
+            visit.add((row, col))    
+            area = 1
+            q = deque([(row, col)])
+            directions = [(1,0), (-1,0), (0,1), (0,-1)]
+            
+            while q:
+                r, c = q.popleft()
+                for dr, dc in directions:
+                    newR, newC = r+dr, c+dc
+                    # island is expandable
+                    if (newR in range(ROWS)) and (newC in range(COLS)) and ((newR, newC) not in visit) and (grid[newR][newC] == 1):
+                        area += 1
+                        visit.add((newR, newC))
+                        q.append((newR, newC))
+                        
+            return area
+            
+            
+        for r in range(ROWS):
+            for c in range(COLS):
+                # found new island
+                if ((r,c) not in visit) and (grid[r][c] == 1):
+                    maxArea = max(maxArea, bfs(r, c))
+        
+        return maxArea
+        
