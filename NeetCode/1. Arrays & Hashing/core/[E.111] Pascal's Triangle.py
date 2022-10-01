@@ -17,3 +17,23 @@ class Solution:
             res.append(row)
         
         return res 
+    
+    
+# my solution
+class Solution(object):
+    def generate(self, numRows):
+        """
+        :type numRows: int
+        :rtype: List[List[int]]
+        """
+        res = [[1]]
+        for i in range(numRows-1):
+            tmp = [0] + res[-1] + [0]
+            level = []
+            for j in range(len(tmp)-1):
+                level.append(tmp[j] + tmp[j+1])
+            res.append(level)
+        
+        return res
+                
+                
