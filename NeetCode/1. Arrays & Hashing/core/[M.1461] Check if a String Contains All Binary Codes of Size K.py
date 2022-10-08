@@ -17,3 +17,22 @@
 # Input: s = "0110", k = 2
 # Output: false
 # Explanation: The binary code "00" is of length 2 and does not exist in the array.
+
+# 2 didits 2*2 (00,01,10,11)
+# 3 digits 2*2*2 
+# k digits 2^k 
+
+# go through all substrings, count unique substrings of size k  == 2^k
+# sliding window 
+# T: O(N*K)
+# M: O(N*k)  hashset 
+
+class Solution:
+    def hasAllCodes(self, s, k):
+        codeSet = set() 
+        
+        for i in range(len(s)-k+1):
+            codeSet.add(s[i:i+k])
+            
+        return len(codeSet) == (2 ** k)
+            
