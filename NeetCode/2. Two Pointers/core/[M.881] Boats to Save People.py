@@ -34,3 +34,25 @@ class Solution:
                 l += 1 
         
         return res 
+    
+
+class Solution(object):
+    def numRescueBoats(self, people, limit):
+        """
+        :type people: List[int]
+        :type limit: int
+        :rtype: int
+        """
+        people.sort()
+        l, r = 0, len(people) - 1 
+        res = 0
+        
+        while l <= r:
+            if people[r] + people[l] <= limit:
+                r -= 1 
+                l += 1
+            else:
+                r -= 1 
+            res += 1 
+        
+        return res    

@@ -44,5 +44,8 @@ class NumMatrix:
         r1, c1, r2, c2 = r1+1, c1+1, r2+1, c2+1 
         bottomRight = self.sumMat[r2][c2] 
         above = self.sumMat[r1-1][c2]
-        left = self.sumMat[r2][c1-1] 
+        left = self.sumMat[r2][c1-1]
+        topLeft = self.sumMat[r1-1][c1-1]
+        
+        return bottomRight - above - left + topLeft  
         

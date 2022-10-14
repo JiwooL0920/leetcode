@@ -29,3 +29,27 @@ class Solution:
                 total -= nums[l]
                 l += 1 
         return 0 if res == float("inf") else res 
+    
+    
+# my own solution
+class Solution(object):
+    def minSubArrayLen(self, target, nums):
+        """
+        :type target: int
+        :type nums: List[int]
+        :rtype: int
+        """
+        l, r = 0, 0 
+        
+        total = 0
+        minSize = float("inf")
+        
+        for r in range(len(nums)):
+            total += nums[r]
+            if total >= target:
+                while total - nums[l] >= target:
+                    total -= nums[l]
+                    l += 1
+                minSize = min(minSize, r-l+1)
+        
+        return 0 if minSize == float("inf") else minSize     
