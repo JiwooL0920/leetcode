@@ -7,7 +7,6 @@
 # Time: O(E+V)
 # parent array (root parent) 
 # rank array (connected components)
-
 # Leet 547
 class Solution:
     def countComponents(self, n, edges):
@@ -39,5 +38,4 @@ class Solution:
         for n1, n2 in edges: 
             res -= union(n1, n2) 
             
-        return res 
-            
+        return res
