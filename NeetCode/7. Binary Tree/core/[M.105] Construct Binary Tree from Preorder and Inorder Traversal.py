@@ -21,6 +21,17 @@ class Solution:
             return None 
         root = TreeNode(preorder[0])
         mid = inorder.index(preorder[0])
-        root.left = self.buildTree(preorder[1:mid+1], inorder[:mid])  #preorder from index to mid, inorder beginning up till mid but not including mid 
+        #preorder from index to mid, inorder beginning up till mid but not including mid 
+        root.left = self.buildTree(preorder[1:mid+1], inorder[:mid])  
         root.right = self.buildTree(preorder[mid+1:], inorder[mid+1:])
         return root 
+    
+
+# Time Complexity Analysis:
+# Finding the Root Index: The inorder.index(preorder[0]) operation takes (O(n)) time.
+# Subarray Creation: Creating subarrays preorder[1:mid+1], inorder[:mid], preorder[mid+1:], and inorder[mid+1:] takes (O(n)) time for each recursive call.
+# Recursive Calls: The function makes two recursive calls for the left and right subtrees.
+    
+# Overall Time Complexity:
+# Worst Case: The worst-case time complexity is (O(n^2)).
+# Explanation: In each recursive call, finding the root index and creating subarrays takes (O(n)) time. Since there are (n) nodes, the total time complexity is (O(n) + O(n-1) + O(n-2) + ... + O(1) = O(n^2)).
