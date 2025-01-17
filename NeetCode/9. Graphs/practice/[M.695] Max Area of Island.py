@@ -26,7 +26,6 @@
 # n == grid[i].length
 # 1 <= m, n <= 50
 # grid[i][j] is either 0 or 1.
-
 class Solution:
     def maxAreaOfIsland(self, grid: List[List[int]]) -> int:
         R, C = len(grid), len(grid[0])
