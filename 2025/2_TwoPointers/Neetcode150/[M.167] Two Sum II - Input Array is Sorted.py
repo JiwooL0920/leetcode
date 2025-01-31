@@ -12,5 +12,5 @@ class Solution:
                 r -= 1
             else:
                 # indices are based on 1, so add 1
-                return [l+1, r+2] 
+                return [l+1, r+1] 
         return [] 
