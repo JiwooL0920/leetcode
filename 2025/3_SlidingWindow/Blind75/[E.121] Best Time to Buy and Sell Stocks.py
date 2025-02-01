@@ -1,5 +1,5 @@
 # Jan 31, 2025
-# https://leetcode.com/problems/best-time-to-buy-and-sell-stock/description/ 
+# https://leetcode.com/problems/best-time-to-buy-and-sell-stock/description/
 
 # Time: O(N)
 # Space: O(1)

@@ -18,5 +18,5 @@ class Solution:
             res = max(res, r-l+1)
             unique.add(s[r])
         return res
-            
+
 
