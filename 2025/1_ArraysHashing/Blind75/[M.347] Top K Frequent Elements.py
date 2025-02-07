@@ -87,3 +87,71 @@ class Solution:
                 # if length to res reaches k, return res
                 if len(res) == k:
                     return res
+
+
+# -----------------------------------------------------------------------
+# Review: Feb 7, 2025
+# Time: O(NlogN) - sorting
+# Space: O(N)
+class Solution:
+    def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+        # Time: O(N)
+        # Space: O(N)
+
+        nums.sort()
+        
+        # Create list of buckets based on frequency
+        # max frequency is the length of nums list
+        bucket = [[] for i in range(len(nums)+1)]
+
+        # iterate through nums and record frequency of each number
+        # index of bucket = freq
+        # ex. [1, 2, 2, 3, 3, 3]
+        # bucket = [[], [1], [2], [3], [], [], []]
+        i = 0
+        while i < len(nums):
+            freq = 1
+            j = i+1
+            while j < len(nums) and nums[i] == nums[j]:
+                freq += 1
+                j += 1
+            bucket[freq].append(nums[i])
+            i = j
+
+        print("bucket: ", bucket)
+
+        # go through bucket in reverse order and find top k frequent result
+        res = []
+        for i in range(len(bucket)-1, -1, -1):
+            for n in bucket[i]:
+                if len(res) == k:
+                    return res
+                res.append(n)
+        
+        return res
+
+# -----------------------------------------------------------------------
+# Review: Feb 7, 2025
+# Better solution without using sorting, although it uses additional memory for map
+# Time: O(N)
+# Space: O(2N)
+class Solution:
+    def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+        # Time: O(N)
+        # Space: O(N)
+
+        count = {}
+        for n in nums:
+            count[n] = count.get(n, 0) + 1
+                
+        bucket = [[] for i in range(len(nums)+1)]
+
+        for n, freq in count.items():
+            bucket[freq].append(n)
+        
+        res = []
+        for i in range(len(bucket)-1, -1, -1):
+            for n in bucket[i]:
+                res.append(n)
+                if len(res) == k:
+                    return res
