@@ -2,7 +2,7 @@
 # https://leetcode.com/problems/group-anagrams/description/
 
 # Solution 1 - Sorting
-# sorting solution = O (M * N log N) 
+# sorting solution = O (M * N log N)
 class Solution:
     def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
         res = defaultdict(list)
@@ -30,3 +30,27 @@ class Solution:
             # list cant be keys
             res[tuple(count)].append(s)
         return res.values()
+
+# -----------------------------------------------------------------------
+# Review: Feb 6, 2025
+class Solution:
+    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+      # initalize new keys with empty list
+      resmap = defaultdict(list)
+
+      # iterate through string
+      for s in strs:
+        # create a list of character count, where each index represents the ord representation of the character
+        charcount = [0]*26
+        # iterate through characters in c
+        for c in s:
+          # determine ord value of that character
+          ordd = ord(c) - ord('a')
+          # increment character count
+          charcount[ordd] += 1
+        # store character count list as key in the result map
+        # NOTE: cant have list as key in a python dict -- need to convert into tuple
+        resmap[tuple(charcount)].append(s)
+
+      # for final output, turn the groups back from tuple to list
+      return [list(group) for group in resmap.values()]
