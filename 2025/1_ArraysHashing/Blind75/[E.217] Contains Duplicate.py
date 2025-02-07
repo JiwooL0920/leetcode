@@ -4,7 +4,7 @@
 
 # Brute Force
 # Time, Space: O(N)
-# Hashmap insert and search: O(1) 
+# Hashmap insert and search: O(1)
 class Solution:
     def hasDuplicate(self, nums: List[int]) -> bool:
         hashmap = {}
@@ -28,4 +28,17 @@ class Solution:
             if n in hashset:
                 return True
             hashset.add(n)
+        return False
+
+
+# -----------------------------------------------------------------------
+# Review: Feb 6, 2025
+
+class Solution:
+    def containsDuplicate(self, nums: List[int]) -> bool:
+        sett = {}
+        for n in nums:
+            if n in sett:
+                return True
+            sett[n] = 1
         return False
