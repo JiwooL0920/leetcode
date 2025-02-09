@@ -7,7 +7,7 @@ class Solution:
         # Time: O(N), Space: O(N)
         numSet = set(nums)
         longest = 0
-        
+
         for n in nums:
             # check if its the start of a sequence
             # (if it doesnt have a left neighbour)
@@ -16,7 +16,7 @@ class Solution:
                 while (n + length) in numSet:
                     length += 1
                 longest = max(length, longest)
-        
+
         return longest
 
 # -----------------------------------------------------------------------
@@ -25,7 +25,7 @@ class Solution:
 # Time: O(N), Space: O(1)
 class Solution:
     def longestConsecutive(self, nums: List[int]) -> int:
-        res = 0 
+        res = 0
 
         i = 0
         while i < len(nums):
@@ -37,5 +37,25 @@ class Solution:
                 i += 1
             res = max(res, streak)
             i = j+1
-        
-        return res 
+
+        return res
+
+# -----------------------------------------------------------------------
+# Review: Feb 9, 2025
+# Time: O(N), Space: O(N)
+class Solution:
+    def longestConsecutive(self, nums: List[int]) -> int:
+        # turn nums in to set for O(1) search
+        numset = set(nums)
+        longest = 0
+
+        for n in numset:
+            # n is the start of a sequence
+            if (n-1) not in numset:
+                length = 1
+                while n + length in numset:
+                    length += 1
+                longest = max(longest, length)
+
+        return longest
+
