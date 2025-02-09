@@ -30,3 +30,32 @@ class Solution:
             postfix *= nums[i]
         
         return res
+
+# -----------------------------------------------------------------------
+# Review: Feb 8, 2025
+# Time: O(N), Space: O(1)
+class Solution:
+    def productExceptSelf(self, nums: List[int]) -> List[int]:
+        #   [1,  2,  4, 6]
+        # ----------------------
+        # 1 [   1,      (1x1),   (1x1x2), (1x2x4) ]   prefix 
+        #   [(2x4x6x1), (4x6x1), (6x1),      1    ]   postfix
+        # ----------------------
+        # 1 [1,  1,  2,  8]       prefix
+        #   [48, 24, 6,  1] 1     postfix
+        # ---------------------(x)
+        # = [48, 24, 12, 8]
+        lenn = len(nums)
+        result = [1 for i in range(lenn)]
+
+        prefix = 1
+        for i in range(lenn):
+            result[i] *= prefix
+            prefix *= nums[i]
+
+        postfix = 1
+        for i in range(lenn-1, -1, -1):
+            result[i] *= postfix
+            postfix *= nums[i]
+        
+        return result
