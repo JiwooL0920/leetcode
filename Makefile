@@ -1,4 +1,4 @@
 push:
 	git add -A
-	git commit -m "push"
+	git commit -m "$(date)"
 	git push
