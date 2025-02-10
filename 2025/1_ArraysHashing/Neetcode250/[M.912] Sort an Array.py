@@ -3,10 +3,11 @@
 
 class Solution:
     def sortArray(self, nums: List[int]) -> List[int]:
-        return self.bubble_sort(nums) # time limit exceeded
+        # return self.bubble_sort(nums) # time limit exceeded
         # return self.selection_sort(nums) # time limit exceeded
         # return self.insertion_sort(nums) # time limit exceeded
         # return self.quick_sort(nums) # mem limit exceeded
+        return self.merge_sort(nums, 0, len(nums)-1) # pass
 
     '''
     [ Bubble Sort ]
@@ -101,6 +102,41 @@ class Solution:
     2. Recursively sort the two halves
     3. Merge the two sorted halves into a single sorted array
     '''
-    # def merge_sort(self, nums: List[int]) -> List[int]:
-    #     if
+    def merge_sort(self, nums: List[int], l: int, r: int) -> List[int]:
+
+        def merge(nums, L, M, R):
+            left, right = nums[L:M+1], nums[M+1:R+1]
+            i, j, k = L, 0, 0
+
+            while j < len(left) and k < len(right):
+                if left[j] <= right[k]:
+                    nums[i] = left[j]
+                    j += 1
+                else:
+                    nums[i] = right[k]
+                    k += 1
+                i += 1
+
+            # left array still had values left over
+            while j < len(left):
+                nums[i] = left[j]
+                j += 1
+                i += 1
+
+            # right array still had values left over
+            while k < len(right):
+                nums[i] = right[k]
+                k += 1
+                i += 1
+
+
+        if l == r:
+            return nums
+
+        m = (l+r) // 2
+        self.merge_sort(nums, l, m)   # left half
+        self.merge_sort(nums, m+1, r) # right half
+        merge(nums, l, m, r)
+        return nums
+
 
