@@ -24,3 +24,26 @@ class Solution:
                 res += rightMax - height[r]
         
         return res
+
+# -----------------------------------------------------------------------
+# Review: Feb 11, 2025
+# Time: O(N), Space: O(N)
+# You can avoid additional memory by using two pointer approach above and calculating l/rmax on res on the fly (see above)
+class Solution:
+    def trap(self, height: List[int]) -> int:
+        lmax, rmax = [0] * len(height), [0] * len(height) 
+        ll, rr = 0, 0
+
+        for i, h in enumerate(height):
+            ll = max(ll, height[i])
+            lmax[i] = ll
+
+        for i in range(len(height)-1, -1, -1):
+            rr = max(rr, height[i])
+            rmax[i] = rr
+
+        trappable = 0
+        for i in range(len(height)-1):
+            trappable += min(lmax[i], rmax[i]) - height[i]
+        
+        return trappable
