@@ -21,3 +21,29 @@ class Solution:
             r += 1
 
         return maxP
+
+
+# -------------------------------------------------------------------------------
+# Review: Feb 15, 2024
+# https://leetcode.com/problems/best-time-to-buy-and-sell-stock/description/
+
+# Time: O(N)
+# Space: O(1)
+
+class Solution:
+    def maxProfit(self, prices: List[int]) -> int:
+        i, j = 0, 1
+        result = 0
+        
+        while j < len(prices):
+            pi, pj = prices[i], prices[j]
+            
+            if pi < pj:
+                profit = pj - pi
+                result = max(result, profit)
+            else:
+                i = j
+            
+            j += 1
+
+        return result 
